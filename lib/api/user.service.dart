@@ -43,7 +43,7 @@ class UserService {
     String? accessToken = prefs.getString('accessToken');
     String? username = prefs.getString('username');
 
-    final url = Uri.parse('http://192.168.1.63:8080/users/$username');
+    final url = Uri.parse('https://newsmicroservice-60t5ut6g.b4a.run/news-rest-api/users/$username');
 
     try {
       final response = await http.get(
