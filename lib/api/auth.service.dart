@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:news/model/LoginResponse.dart';
 
 class AuthService {
-  final String apiUrl = "http://192.168.1.63:8080/oauth/token";
+  final String apiUrl = "https://newsmicroservice-60t5ut6g.b4a.run/news-rest-api/oauth/token";
 
   Future<LoginResponse?> login(String email, String senha) async {
     try {

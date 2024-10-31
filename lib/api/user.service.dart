@@ -5,7 +5,7 @@ import 'package:news/model/UserResponse.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
-  final String apiUrl = "http://192.168.1.63:8080/users";
+  final String apiUrl = "https://newsmicroservice-60t5ut6g.b4a.run/news-rest-api/users";
 
   Future<CreateUserResponse> createUser(
       String email, String senha, String phoneNumber, String name) async {

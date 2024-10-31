@@ -8,7 +8,7 @@ class ArticlesService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString('accessToken');
 
-    final url = Uri.parse('http://192.168.1.63:8080/news/search');
+    final url = Uri.parse('https://newsmicroservice-60t5ut6g.b4a.run/news-rest-api/news/search');
 
     final body = json.encode({
       'query': query,
