@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:news/api/custom.httpclient.dart';
 import 'package:news/model/NewsResponse.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,6 +7,7 @@ class ArticlesService {
     Future<List<NewsArticle>> getArticles(String query, {int page = 1, int limit = 10}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString('accessToken');
+    CustomHttpClient customHttpClient = CustomHttpClient();
 
     final url = Uri.parse('https://newsmicroservice-60t5ut6g.b4a.run/news-rest-api/news/search');
 
@@ -18,11 +19,10 @@ class ArticlesService {
     });
 
     try {
-      final response = await http.post(
+      final response = await customHttpClient.post(
         url,
         headers: {
           'Authorization': 'Bearer $accessToken',
-          'Content-Type': 'application/json',
         },
         body: body,
       );

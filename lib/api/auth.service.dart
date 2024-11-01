@@ -1,17 +1,16 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:news/api/custom.httpclient.dart';
 import 'package:news/model/LoginResponse.dart';
 
 class AuthService {
+  CustomHttpClient customHttpClient = CustomHttpClient();
+
   final String apiUrl = "https://newsmicroservice-60t5ut6g.b4a.run/news-rest-api/oauth/token";
 
   Future<LoginResponse?> login(String email, String senha) async {
     try {
-      final response = await http.post(
+      final response = await customHttpClient.post(
         Uri.parse(apiUrl),
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: jsonEncode({
           'username': email,
           'password': senha,

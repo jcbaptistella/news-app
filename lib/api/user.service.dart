@@ -1,20 +1,18 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:news/api/custom.httpclient.dart';
 import 'package:news/model/CreateResponse.dart';
 import 'package:news/model/UserResponse.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
+  CustomHttpClient customHttpClient = CustomHttpClient();
   final String apiUrl = "https://newsmicroservice-60t5ut6g.b4a.run/news-rest-api/users";
 
   Future<CreateUserResponse> createUser(
       String email, String senha, String phoneNumber, String name) async {
     try {
-      final response = await http.post(
+      final response = await customHttpClient.post(
         Uri.parse(apiUrl),
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: jsonEncode({
           'username': email,
           'password': senha,
@@ -46,11 +44,10 @@ class UserService {
     final url = Uri.parse('https://newsmicroservice-60t5ut6g.b4a.run/news-rest-api/users/$username');
 
     try {
-      final response = await http.get(
+      final response = await customHttpClient.get(
         url,
         headers: {
           'Authorization': 'Bearer $accessToken',
-          'Content-Type': 'application/json',
         },
       );
 
